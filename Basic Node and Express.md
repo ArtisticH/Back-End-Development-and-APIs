@@ -44,6 +44,7 @@ app.get('/', function(req, res) {
 });
 ```  
 위 코드는 루트 경로로의 GET 요청에 대한 핸들러입니다. 이 핸들러는 요청이 들어오면 "Hello, World!"라는 문자열을 응답으로 보내게 됩니다.  
+이 코드는 클라이언트가 서버로 GET 요청을 보낼 때 서버가 "Hello, World!"라는 응답을 보내는 기본적인 동작을 정의하고 있습니다. 클라이언트는 이 응답을 받아서 처리할 수 있으며, 일반적으로 웹 브라우저에서는 이 응답을 화면에 표시하게 될 것입니다.
 
 Use the `app.get()` method to serve the string "Hello Express" to GET requests matching the `/` (root) path. Be sure that your code works by looking at the logs, then see the results in the preview if you are using Replit.
 Note: All the code for these lessons should be added in between the few lines of code we have started you off with.
@@ -55,3 +56,36 @@ app.get('/', function(req, res) {
   res.send('Hello Express');
 });
 ```
+
+## Serve an HTML File
+You can respond to requests with a file using the res.sendFile(path) method. You can put it inside the app.get('/', ...) route handler. Behind the scenes, this method will set the appropriate headers to instruct your browser on how to handle the file you want to send, according to its type. Then it will read and send the file. This method needs an absolute file path. We recommend you to use the Node global variable __dirname to calculate the path like this:
+```
+absolutePath = __dirname + '/relativePath/file.ext'
+```
+
+Send the `/views/index.html` file as a response to GET requests to the `/` path. If you view your live app, you should see a big HTML heading (and a form that we will use later…), with no style applied.
+
+Note: You can edit the solution of the previous challenge or create a new one. If you create a new solution, keep in mind that Express evaluates routes from top to bottom, and executes the handler for the first match. You have to comment out the preceding solution, or the server will keep responding with a string.  
+
+이것은 Express.js를 사용하여 웹 애플리케이션을 개발할 때 파일을 요청에 응답으로 보내는 방법을 설명하고 있습니다. `res.sendFile(path)` 메서드를 사용하여 이를 수행할 수 있습니다. 이 메서드는 요청에 대한 응답으로 파일을 보내는 역할을 합니다. 이때, 이 파일을 브라우저에서 어떻게 처리할지에 대한 지침을 설정하기 위해 적절한 헤더를 설정합니다. 이 메서드를 사용하려면 절대 파일 경로가 필요하며, 일반적으로 `__dirname`이라는 Node 전역 변수를 사용하여 경로를 계산하는 것이 좋습니다.
+```
+let express = require('express');
+let app = express();
+let absolutePath = __dirname + '/views/index.html'
+
+app.get('/', function(req, res) {
+  res.sendFile(absolutePath);
+});
+
+```
+Express는 라우트를 위에서부터 아래로 순서대로 평가하며, 처음으로 일치하는 라우트 핸들러를 실행합니다. 이전 도전 과제에서 작성한 코드를 주석 처리하거나 삭제하지 않으면 이전 해결책이 여전히 적용될 수 있으므로 주의해야 합니다.  
+
+
+`__dirname`은 Node.js 환경에서 사용할 수 있는 특수한 전역 변수입니다. 이 변수는 현재 실행 중인 스크립트 파일의 디렉토리 경로를 나타냅니다. 따라서 `__dirname`을 사용하면 현재 스크립트 파일의 위치를 기준으로 다른 파일이나 디렉토리의 경로를 계산할 수 있습니다.  
+
+`상대 경로 (Relative Path)`: 상대 경로는 현재 위치나 기준 경로를 기반으로 파일이나 디렉토리의 위치를 지정하는 방법입니다. 예를 들어, `"../folder/file.txt"`와 같이 사용되며, 현재 위치나 기준 경로에서 얼마나 떨어져 있는지를 상대적으로 표현합니다.
+
+`절대 경로 (Absolute Path)`: 절대 경로는 파일이나 디렉토리의 위치를 루트 디렉토리부터의 전체 경로로 지정하는 방법입니다. 예를 들어, `"/home/user/documents/file.txt"`와 같이 사용됩니다. 절대 경로는 시스템 전체에서 고유하며, 어디에서나 동일하게 해석됩니다.
+
+__dirname을 사용하면 현재 스크립트 파일의 위치를 알 수 있으므로, 상대 경로를 절대 경로로 변환하기 위해 사용됩니다. 예를 들어, 만약 현재 스크립트 파일이 "/home/user/myapp/server.js"에 있다고 가정하면, __dirname은 "/home/user/myapp"와 같은 현재 스크립트 파일의 디렉토리 경로를 나타냅니다. 그러므로 __dirname + '/views/index.html'을 사용하면 "/home/user/myapp/views/index.html"과 같은 절대 경로를 계산할 수 있게 됩니다.
+
