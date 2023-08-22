@@ -5,7 +5,34 @@ In the last set of courses you learned to install and manage packages from npm, 
 
 Express is a lightweight web application framework, and is one of the most popular packages on npm. Express makes it much easier to create a server and handle routing for your application, which handles things like directing people to the correct page when they visit a certain endpoint like /blog.
 
-In this course, you'll learn the basics of Node and Express including how to create a server, serve different files, and handle different requests from the browser.
+In this course, you'll learn the basics of Node and Express including how to create a server, serve different files, and handle different requests from the browser.  
+
+```
+Q 라우팅?
+
+라우팅(Routing)은 웹 애플리케이션에서 클라이언트 요청(일반적으로 URL)을 해당 요청에 대한 응답으로 연결해주는 프로세스나 메커니즘을 가리킵니다. 즉, 어떤 URL 경로(엔드포인트)가 클라이언트 요청과 연관되며, 그에 따른 처리나 응답을 수행하는지를 정의하는 것입니다.
+
+예를 들어, 웹 애플리케이션에서 블로그 페이지를 요청하려면 일반적으로 "/blog"라는 URL을 사용합니다. 이때 라우팅은 "/blog"로 들어오는 요청을 해당 페이지나 기능과 연결하는 역할을 합니다. 라우팅은 클라이언트 요청이 특정한 URL 경로와 일치하면 그에 따른 동작을 수행하도록 서버에게 지시합니다.
+
+Express.js는 웹 서버 및 웹 애플리케이션 개발을 단순화하기 위한 Node.js 기반의 프레임워크 중 하나이며, 라우팅을 다루는데 매우 효과적입니다. Express.js를 사용하면 간단하게 URL 경로와 관련된 핸들러 함수를 정의할 수 있으며, 이러한 핸들러 함수는 해당 URL로 들어오는 요청에 대한 응답을 제어하고 실행할 수 있습니다. 이를 통해 웹 애플리케이션의 다양한 페이지나 엔드포인트에 대한 라우팅을 손쉽게 구현할 수 있습니다.
+
+간단히 말하면, 라우팅은 클라이언트 요청과 서버 응답 간의 연결을 관리하며, Express.js와 같은 프레임워크를 사용하면 이 작업을 효율적으로 처리할 수 있습니다.
+
+Q 프레임워크?
+
+프레임워크는 마치 "만들기 쉬운 레고 세트"와 비슷합니다. 레고 세트는 작은 블록들로 구성되어 있고, 이 블록들을 서로 결합하여 집, 자동차, 비행기 등 다양한 것을 만들 수 있습니다. 이 블록들은 이미 만들어져 있고, 우리는 그 블록들을 조립해서 우리가 원하는 것을 만들 수 있습니다.
+
+프레임워크도 비슷한 개념입니다. 프레임워크는 이미 만들어져 있는 코드 조각들의 모음집이라고 생각할 수 있습니다. 이 코드 조각들은 특정 작업을 하기 위해 필요한 기본 구조와 도구를 제공합니다. 아이들이 프레임워크를 사용하면 마치 레고 블록을 조립하듯이, 이미 준비된 코드를 사용하여 웹 사이트, 게임, 앱 또는 다른 소프트웨어를 만들 수 있습니다.
+
+예를 들어, 웹 개발에서는 프레임워크인 "React"나 "Vue.js"를 사용할 수 있습니다. 이 프레임워크들은 웹 페이지를 만들기 위해 필요한 구조와 도구를 제공하며, 개발자는 이를 활용하여 웹 페이지를 만들고 디자인할 수 있습니다. 그러니 마치 레고 블록을 사용하여 건물을 만들듯이, 프레임워크를 사용하여 웹 페이지를 만들 수 있다고 생각하면 됩니다.
+
+Q npm?
+
+node package manager, 소트프웨어 공유, 설치, 관리하는 저장소.
+node.js 설치 시에 설치된다.
+npm init -y 와 동시에 package.json 파일이 만들어짐.
+package.json에는 프로젝트의 모든 라이브러리에 대한 정보가 들어감. 
+```
 
 ## Meet the Node console
 Node is just a JavaScript environment. Like client side JavaScript, you can use the console to display useful debug information. On your local machine, you would see console output in a terminal. On Replit, a terminal is open in the right pane by default.
@@ -21,12 +48,20 @@ console.log("Hello World")
 
 Express는 Node.js를 위한 웹 애플리케이션 프레임워크로서, 웹 및 API 개발을 더 쉽고 간편하게 만들어주는 도구입니다. 다양한 HTTP 요청과 응답을 처리하고, 라우팅, 미들웨어, 템플릿 엔진 등의 기능을 제공하여 웹 애플리케이션을 구축하는 과정을 단순화합니다.  
 
-Express는 경량화되어 있어서 개발자들이 필요한 기능을 선택적으로 확장하거나 추가할 수 있으며, 다양한 미들웨어와 플러그인을 활용하여 기능을 확장시킬 수 있습니다. 이러한 특징들로 인해 Express는 Node.js 생태계에서 가장 널리 사용되는 웹 프레임워크 중 하나입니다.
+Express는 경량화되어 있어서 개발자들이 필요한 기능을 선택적으로 확장하거나 추가할 수 있으며, 다양한 미들웨어와 플러그인을 활용하여 기능을 확장시킬 수 있습니다. 이러한 특징들로 인해 Express는 Node.js 생태계에서 가장 널리 사용되는 웹 프레임워크 중 하나입니다.  
+
+`let express = require('express');`: 이 줄은 Node.js에서 express 모듈을 가져오고, express 변수에 할당합니다. 이 모듈은 Express.js 웹 프레임워크를 사용하기 위해 필요한 핵심 기능을 제공합니다.
+
+`let app = express();`: 이 줄은 Express 애플리케이션을 생성합니다. express() 함수를 호출하여 새로운 Express 애플리케이션 인스턴스를 만듭니다. 이 인스턴스(app 변수)를 통해 애플리케이션의 설정 및 라우팅을 정의하고 서버를 시작할 수 있습니다.
+
+이 코드는 Express 애플리케이션을 설정하기 위한 기본적인 부분이며, 이후에 app 변수를 사용하여 라우팅을 정의하고 서버를 시작하는 등의 작업을 수행할 수 있습니다. Express를 사용하면 웹 애플리케이션을 빠르게 구축하고 웹 요청과 응답을 처리할 수 있습니다.
 
 ## Start a Working Express Server
 In the first two lines of the file `myApp.js`, you can see how easy it is to create an Express app object. This object has several methods, and you will learn many of them in these challenges. One fundamental method is `app.listen(port)`. It tells your server to listen on a given port, putting it in running state. For testing reasons, we need the app to be running in the background so we added this method in the `server.js` file for you.
 
-Let’s serve our first string! In Express, routes takes the following structure: `app.METHOD(PATH, HANDLER)`. METHOD is an http method in lowercase. PATH is a relative path on the server (it can be a string, or even a regular expression). HANDLER is a function that Express calls when the route is matched. Handlers take the form `function(req, res) {...}`, where req is the request object, and res is the response object. For example, the handler
+Let’s serve our first string! In Express, routes takes the following structure: `app.METHOD(PATH, HANDLER)`. METHOD is an http method in lowercase. PATH is a relative path on the server (it can be a string, or even a regular expression). HANDLER is a function that Express calls when the route is matched. Handlers take the form `function(req, res) {...}`, where req is the request object, and res is the response object. For example, the handler  
+
+app.listen()을 호출하면 Express 애플리케이션이 지정된 포트에서 실행되며, 클라이언트의 HTTP 요청을 처리하게 됩니다. 이 메서드를 호출한 후에는 웹 서버가 실행 중이며, 클라이언트가 해당 포트로 요청을 보낼 수 있습니다.
 ```
 let express = require('express');
 let app = express();
@@ -121,7 +156,67 @@ app.use('/public', express.static(__dirname + '/public'))
 
 HTML 파일: 웹 페이지의 기본 구조를 정의하는 HTML 파일도 정적 자원입니다. 대개, 웹 서버는 이러한 HTML 파일을 클라이언트에게 제공하여 웹 페이지를 렌더링하도록 합니다.
 
-정적 자원은 동적 컨텐츠와 달리 서버에서 변경되지 않고 고정된 상태를 유지합니다. 이로 인해 웹 서버는 이러한 자원을 매우 효율적으로 제공할 수 있으며, 브라우저에서 요청하는 클라이언트에게 신속하게 전송할 수 있습니다. 이것은 웹 페이지의 로딩 속도를 향상시키는 데 도움이 됩니다.
+정적 자원은 동적 컨텐츠와 달리 서버에서 변경되지 않고 고정된 상태를 유지합니다. 이로 인해 웹 서버는 이러한 자원을 매우 효율적으로 제공할 수 있으며, 브라우저에서 요청하는 클라이언트에게 신속하게 전송할 수 있습니다. 이것은 웹 페이지의 로딩 속도를 향상시키는 데 도움이 됩니다.  
+
+- Q
+```
+그러니까 index.html파일 안애 <link>를 통해 css가 외부 로드 되어 있어. 
+그리고 let absolutePath = __dirname + '/views/index.html'
+
+app.get('/', function(req, res) {
+  res.sendFile(absolutePath);
+}); 이런 요청이 올 때 express.js에서 정적 자산에 대한 설정을 안 해놨다면 css 로드에 실패하고, 해 놨다면 로드에 성공이라는 거지?
+```
+- A
+```
+맞습니다. index.html 파일 내에서 <link> 태그를 사용하여 외부 CSS 파일을 로드하려면 Express.js 애플리케이션에서 정적 자산 설정이 필요합니다.
+
+여기에 간단한 요약을 제공합니다:
+
+- 정적 자산 설정이 없는 경우: Express.js 애플리케이션에서 정적 자산에 대한 설정을 하지 않으면 클라이언트 측에서 index.html 파일에 포함된 외부 CSS 파일을 로드하는 데 실패할 수 있습니다. 브라우저는 CSS 파일을 찾지 못하고 404 오류를 반환할 것입니다.
+- 정적 자산 설정이 있는 경우: Express.js 애플리케이션에서 정적 자산 설정을 추가하면 클라이언트가 index.html 파일에서 링크된 CSS 파일을 로드할 수 있습니다. Express는 해당 CSS 파일을 정적 자산 디렉토리에서 찾아 제공하며, 클라이언트 측에서 CSS 파일을 성공적으로 로드할 수 있게 됩니다.
+
+따라서 정적 자산 설정을 추가하면 Express 애플리케이션은 클라이언트에게 정적 파일을 제공할 수 있어서, CSS 파일과 같은 정적 자산이 로드에 성공합니다.
+```
+```
+Q 마운트?
+
+미들웨어 함수를 마운트한다는 과정은 Express.js 애플리케이션에서 특정 경로나 라우트에 미들웨어 함수를 연결하는 것을 의미합니다. 이렇게 하면 해당 경로 또는 라우트로 들어오는 요청이 미들웨어를 거쳐가게 되며, 미들웨어가 요청을 가로채고 처리할 수 있습니다.
+
+Q 정적 자산을 따로 설정하는 이유?
+
+정적 자산을 따로 설정해야 하는 이유는 Express.js의 디자인 및 보안 관련 이슈와 웹 애플리케이션의 필요에 기인합니다. 아래에서 이유를 자세히 설명하겠습니다:
+1. 디자인 관점: Express.js는 웹 애플리케이션 프레임워크로서 주로 서버 사이드 렌더링에 중점을 두고 설계되었습니다. 이러한 디자인 상, Express.js는 동적 컨텐츠를 생성하고 서비스하기 위한 것이 주 목적입니다. 정적 파일(예: HTML, CSS, 이미지)을 서비스하는 것은 보조 목적이므로 명시적으로 설정해야 합니다.
+2. 보안 이슈: Express.js는 보안을 고려하여 디자인되었습니다. 정적 파일을 기본적으로 제공하지 않는 이유 중 하나는 보안입니다. 정적 파일을 공개적으로 노출하면 서버에 민감한 정보가 포함된 파일에 접근할 수 있는 보안 취약점을 만들 수 있습니다. 정적 자산 미들웨어를 사용하여 Express.js는 정적 파일에 대한 제어를 효과적으로 갖게 됩니다.
+... 등등
+
+Q 그럼 express.static()는 왜 app.static이 아니고 express야?
+
+요약하면, express.static()과 같은 함수는 Express.js의 설계 원칙과 표준화를 준수하며 미들웨어를 효과적으로 사용하고 재사용하기 위해 express 객체에 속하는 것이 일반적입니다. 이로써 Express.js 개발자들은 일관된 스타일로 미들웨어를 추가하고 구성할 수 있으며, Express.js의 생태계와 호환성을 유지할 수 있습니다.
+
+Q app 객체는 하나의 서버야?
+
+네, Express.js에서 app 객체는 하나의 웹 서버를 나타냅니다. app 객체를 생성하고 구성하면 Express.js 웹 서버를 시작하게 됩니다. 이 웹 서버는 HTTP 요청을 수신하고 해당 요청을 처리하는 역할을 합니다.
+일반적으로 하나의 Express.js 애플리케이션은 하나의 app 객체를 가지며, 이 객체는 웹 서버의 주요 설정과 라우팅을 관리합니다. 개발자는 이 app 객체를 사용하여 서버의 동작을 정의하고 구성할 수 있습니다.
+const express = require('express');
+const app = express();
+
+// 라우팅 설정
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+// 서버 시작
+app.listen(3000, () => {
+  console.log('서버가 3000번 포트에서 실행 중입니다.');
+});
+
+Q 근데 라우팅 설정 -> 서버 시작 순서여도 돼? 뭔가 상식적으론 서버가 시작되고 라우팅이 설정되야 할 것 같은데
+
+라우팅 설정과 서버 시작 순서에는 엄격한 규칙이 없습니다. Express.js에서는 라우팅 설정과 서버 시작의 순서를 자유롭게 결정할 수 있습니다. 이는 Express.js의 특성 중 하나로, 서버 시작 이전에 라우팅을 설정해도 무방합니다.
+Express.js에서는 라우팅 설정은 Express 애플리케이션 객체(app)에 대한 설정이며, 서버 시작은 실제로 HTTP 서버를 바인딩하고 대기시키는 작업입니다. 따라서 이 두 작업 간에 순서를 바꿔서도 문제가 없습니다.
+
+```
 
 ## Serve JSON on a Specific Route
 While an HTML server serves HTML, an API serves data. A REST (REpresentational State Transfer) API allows data exchange in a simple way, without the need for clients to know any detail about the server. The client only needs to know where the resource is (the URL), and the action it wants to perform on it (the verb). The GET verb is used when you are fetching some information, without modifying anything. These days, the preferred data format for moving information around the web is JSON. Simply put, JSON is a convenient way to represent a JavaScript object as a string, so it can be easily transmitted.
