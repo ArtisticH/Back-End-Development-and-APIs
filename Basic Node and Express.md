@@ -516,4 +516,81 @@ Ajax를 사용하면 더 복잡한 구조를 가진 데이터를 처리할 때 J
 5. body-parser 패키지:
 POST 요청으로부터 데이터를 파싱하려면 body-parser 패키지를 사용해야 합니다. body-parser는 다양한 형식의 데이터를 해석하고 읽을 수 있는 미들웨어를 제공합니다. 이 미들웨어를 사용하면 Express.js 애플리케이션에서 POST 요청의 데이터를 추출하고 처리할 수 있습니다.
 ```
+`body-parser` has already been installed and is in your project's `package.json` file. `require` it at the top of the `myApp.js` file and store it in a variable named `bodyParser`. The middleware to handle URL encoded data is returned by `bodyParser.urlencoded({extended: false})`. Pass the function returned by the previous method call to `app.use()`. As usual, the middleware must be mounted before all the routes that depend on it.
+
+Note: `extended` is a configuration option that tells `body-parser` which parsing needs to be used. When `extended=false` it uses the classic encoding `querystring` library. When `extended=true` it uses `qs` library for parsing.
+
+When using `extended=false`, values can be only strings or arrays. The object returned when using `querystring` does not prototypically inherit from the default JavaScript `Object`, which means functions like `hasOwnProperty`, `toString` will not be available. The extended version allows more data flexibility, but it is outmatched by JSON.
+
+```
+1. body-parser 패키지 설치:
+이미 body-parser 패키지가 설치되어 있고 package.json 파일에 포함되어 있는 것으로 가정합니다.
+
+2. body-parser 패키지 불러오기:
+
+3. URL 인코딩 데이터를 처리하는 미들웨어 설정:
+URL 인코딩된 데이터를 처리하기 위해 body-parser.urlencoded({ extended: false })를 사용하여 미들웨어를 설정하세요.
+extended 옵션은 false로 설정되어 있으며, 이는 기본적인 쿼리스트링(querystring) 라이브러리를 사용하여 데이터를 해석하도록 body-parser에 지시합니다.
+body-parser는 extended: false 설정일 때 데이터를 문자열 또는 배열 값으로 처리합니다.
+
+4. 미들웨어 마운트:
+app.use() 메서드를 사용하여 설정한 body-parser 미들웨어를 Express.js 애플리케이션에 마운트합니다. 이것은 모든 라우트(route)보다 앞에 위치해야 합니다.
+마운트 순서는 중요합니다. 먼저 body-parser를 마운트한 후에 POST 요청을 처리하는 라우트를 정의해야 합니다.
+
+1. extended 옵션:
+extended 옵션은 body-parser에서 URL 인코딩된 데이터를 해석할 때 사용되며, 두 가지 값 중 하나를 가질 수 있습니다: true 또는 false.
+
+2. extended: false:
+이 옵션을 사용하면 body-parser는 URL 인코딩된 데이터를 단순한 형태로 해석합니다.
+데이터는 문자열 또는 배열 값으로 해석됩니다. 이 때, 데이터 객체는 JavaScript의 기본 Object에서 상속받지 않으므로 해당 객체에는 일반 Object의 프로퍼티와 메서드(예: hasOwnProperty, toString)가 없습니다.
+
+3. extended: true:
+이 옵션을 사용하면 body-parser는 URL 인코딩된 데이터를 더 유연하게 처리할 수 있습니다.
+데이터는 객체로 해석되며, 객체는 JavaScript의 기본 Object에서 상속한 프로토타입 메서드와 프로퍼티를 가질 수 있습니다.
+
+4. JSON과 비교:
+extended: true를 사용하면 객체 형태로 데이터를 처리할 수 있지만, JSON 형식도 객체를 사용하여 데이터를 표현할 수 있습니다.
+JSON은 데이터를 더 간결하고 복잡한 구조로 표현하는 데 더 적합한 형식이며, JavaScript에서 기본적으로 지원됩니다.
+
+요약하면, extended: false 옵션을 사용하면 URL 인코딩된 데이터를 단순한 형태로 해석하며, 데이터는 문자열 또는 배열로 처리됩니다. extended: true를 사용하면 더 복잡한 객체 형태로 데이터를 처리할 수 있지만, JSON 형식을 사용하는 것이 더 일반적이고 효율적입니다.
+```
+```
+let express = require('express');
+let app = express();
+let bodyParser = require("body-parser");
+
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+app.use('/public', express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended: false}));
+```
+
+## Get Data from POST Requests
+Mount a POST handler at the path `/name`. It’s the same path as before. We have prepared a form in the html frontpage. It will submit the same data of exercise 10 (Query string). If the body-parser is configured correctly, you should find the parameters in the object `req.body`. Have a look at the usual library example:
+```
+route: POST '/library'
+urlencoded_body: userId=546&bookId=6754
+req.body: {userId: '546', bookId: '6754'}
+```
+Respond with the same JSON object as before: `{name: 'firstname lastname'}`. Test if your endpoint works using the html form we provided in the app frontpage.
+
+Tip: There are several other http methods other than GET and POST. And by convention there is a correspondence between the http verb, and the operation you are going to execute on the server. The conventional mapping is:
+
+POST (sometimes PUT) - Create a new resource using the information sent with the request,
+
+GET - Read an existing resource without modifying it,
+
+PUT or PATCH (sometimes POST) - Update a resource using the data sent,
+
+DELETE => Delete a resource.
+
+There are also a couple of other methods which are used to negotiate a connection with the server. Except from GET, all the other methods listed above can have a payload (i.e. the data into the request body). The body-parser middleware works with these methods as well.
+```
+app.post('/name', (req, res) => {
+  res.json({"name": `${req.body.first} ${req.body.last}`});
+});
+```
 
