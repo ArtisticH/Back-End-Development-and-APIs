@@ -479,5 +479,8 @@ Build an API endpoint, mounted at `GET /name`. Respond with a JSON document, tak
 
 Note: In the following exercise you are going to receive data from a POST request, at the same `/name` route path. If you want, you can use the method `app.route(path).get(handler).post(handler)`. This syntax allows you to chain different verb handlers on the same path route. You can save a bit of typing, and have cleaner code.
 ```
+app.get('/name', (req, res) => {
+  res.json({"name": `${req.query.first} ${req.query.last}`});
+});
 ```
 ## Use body-parser to Parse POST Requests
