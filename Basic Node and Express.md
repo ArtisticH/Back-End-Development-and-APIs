@@ -221,7 +221,14 @@ Express.js에서는 라우팅 설정은 Express 애플리케이션 객체(app)�
 ## Serve JSON on a Specific Route
 While an HTML server serves HTML, an API serves data. A REST (REpresentational State Transfer) API allows data exchange in a simple way, without the need for clients to know any detail about the server. The client only needs to know where the resource is (the URL), and the action it wants to perform on it (the verb). The GET verb is used when you are fetching some information, without modifying anything. These days, the preferred data format for moving information around the web is JSON. Simply put, JSON is a convenient way to represent a JavaScript object as a string, so it can be easily transmitted.
 
-Let's create a simple API by creating a route that responds with JSON at the path `/json`. You can do it as usual, with the `app.get()` method. Inside the route handler, use the method `res.json()`, passing in an object as an argument. This method closes the request-response loop, returning the data. Behind the scenes, it converts a valid JavaScript object into a string, then sets the appropriate headers to tell your browser that you are serving JSON, and sends the data back. A valid object has the usual structure `{key: data}`. `data` can be a number, a string, a nested object or an array. `data` can also be a variable or the result of a function call, in which case it will be evaluated before being converted into a string.  
+Let's create a simple API by creating a route that responds with JSON at the path `/json`. You can do it as usual, with the `app.get()` method. Inside the route handler, use the method `res.json()`, passing in an object as an argument. This method closes the request-response loop, returning the data. Behind the scenes, it converts a valid JavaScript object into a string, then sets the appropriate headers to tell your browser that you are serving JSON, and sends the data back. A valid object has the usual structure `{key: data}`. `data` can be a number, a string, a nested object or an array. `data` can also be a variable or the result of a function call, in which case it will be evaluated before being converted into a string.
+
+1. API 생성: API는 애플리케이션 프로그래밍 인터페이스(API)의 약어로, 다른 소프트웨어와 상호 작용할 수 있는 엔드포인트 또는 경로를 제공하는 서버 측 소프트웨어입니다. 이 문장은 Express.js를 사용하여 이러한 API를 만들려고 합니다.
+2. 라우트 생성: API의 경로를 /json으로 지정합니다. 이것은 클라이언트가 서버에 /json 경로로 HTTP GET 요청을 보낼 때 이 API에 액세스할 수 있게 해줍니다.
+3. Express.js app.get() 메서드: app.get() 메서드는 Express.js 애플리케이션에서 GET 요청을 처리하기 위해 사용됩니다. /json 경로로 들어오는 GET 요청에 대한 처리기를 만들어야 합니다.
+4. 응답 데이터: 요청을 처리하는 라우트 핸들러 내에서 res.json() 메서드를 사용하여 JSON 형식의 응답을 생성합니다. res.json() 메서드는 JavaScript 객체를 JSON 문자열로 변환하고, 적절한 헤더를 설정하여 브라우저에게 JSON 데이터를 반환한다고 설명됩니다.
+5. JSON 데이터: 유효한 JSON 객체의 구조는 {key: data}로 되어 있으며, data는 숫자, 문자열, 중첩된 객체, 배열 또는 변수 또는 함수 호출 결과가 될 수 있다고 설명됩니다. 이것은 클라이언트가 /json 경로로 GET 요청을 보냈을 때 반환되는 JSON 데이터의 형식입니다.
+
 
 Serve the object {"message": "Hello json"} as a response, in JSON format, to GET requests to the /json route. Then point your browser to your-app-url/json, you should see the message on the screen.
 ```
@@ -243,8 +250,15 @@ app.get('/json', function(req, res) {
 ## Use the .env File
 The `.env` file is a hidden file that is used to pass environment variables to your application. This file is secret, no one but you can access it, and it can be used to store data that you want to keep private or hidden. For example, you can store API keys from external services or your database URI. You can also use it to store configuration options. By setting configuration options, you can change the behavior of your application, without the need to rewrite some code.
 
-The environment variables are accessible from the app as `process.env.VAR_NAME`. The `process.env` object is a global Node object, and variables are passed as strings. By convention, the variable names are all uppercase, with words separated by an underscore. The `.env` is a shell file, so you don’t need to wrap names or values in quotes. It is also important to note that there cannot be space around the equals sign when you are assigning values to your variables, e.g. `VAR_NAME=value`. Usually, you will put each variable definition on a separate line.  
+The environment variables are accessible from the app as `process.env.VAR_NAME`. The `process.env` object is a global Node object, and variables are passed as strings. By convention, the variable names are all uppercase, with words separated by an underscore. The `.env` is a shell file, so you don’t need to wrap names or values in quotes. It is also important to note that there cannot be space around the equals sign when you are assigning values to your variables, e.g. `VAR_NAME=value`. Usually, you will put each variable definition on a separate line.    
+```
+DATABASE_URL=mongodb://localhost:27017/mydatabase
+SECRET_KEY=mysecretkey123
+DEBUG=true
+```
+주의: `.env` 파일에는 민감한 정보(예: 비밀번호)를 저장하거나, `.env` 파일 자체를 버전 관리 시스템에 커밋하는 것은 좋은 아이디어가 아닙니다. 중요한 정보는 보안을 고려하여 관리되어야 합니다. 일반적으로 `.env` 파일은 `.gitignore`와 같은 파일을 사용하여 버전 관리에서 제외시킵니다.
 
+### Configuration options
 "Configuration options" 또는 "설정 옵션"은 소프트웨어 애플리케이션의 동작을 조정하거나 사용자가 원하는 방식으로 사용자 지정하는 데 사용되는 설정 값 또는 변수를 가리킵니다. 이러한 설정 옵션은 애플리케이션의 행동을 수정하거나 특정 기능을 활성화 또는 비활성화하는 데 사용됩니다.
 
 일반적인 예로는 다음과 같은 것들이 있습니다:
@@ -274,6 +288,21 @@ let message= 'Hello json';
   }
 });
 ```
+`require('dotenv').config()`에서 `dotenv`는 Node.js 환경에서 `.env` 파일을 로드하고 그 내용을 현재 프로세스의 환경 변수에 추가하는 모듈입니다. `.config()`는 dotenv 모듈의 메서드(method)이며, 이 메서드를 호출하여 `.env` 파일의 내용을 현재 환경 변수에 로드합니다.
+
+`.env` 파일에는 환경 변수의 키-값 쌍이 포함되어 있습니다. `dotenv` 모듈의 `.config()` 메서드를 호출하면 이러한 키-값 쌍이 현재 Node.js 프로세스의 환경 변수로 설정됩니다. 이렇게 함으로써 애플리케이션에서 `process.env` 객체를 통해 환경 변수에 액세스할 수 있게 됩니다.
+```
+DATABASE_URL=mongodb://localhost:27017/mydatabase
+SECRET_KEY=mysecretkey123
+DEBUG=true
+```
+그런 다음 `require('dotenv').config()`를 호출하면 이러한 환경 변수를 현재 프로세스에 로드합니다. 이후에 `process.env`를 사용하여 이러한 환경 변수에 액세스할 수 있습니다. 
+```
+const databaseUrl = process.env.DATABASE_URL;
+const secretKey = process.env.SECRET_KEY;
+const isDebug = process.env.DEBUG === 'true';
+```
+이렇게 하면 `.env` 파일의 설정이 프로그램에서 사용 가능해지며, 민감한 정보(예: 데이터베이스 URL, 비밀 키)를 환경 변수로 안전하게 관리할 수 있습니다.
 
 ## Implement a Root-Level Request Logger Middleware
 Earlier, you were introduced to the `express.static()` middleware function. Now it’s time to see what middleware is, in more detail. Middleware functions are functions that take 3 arguments: the request object, the response object, and the next function in the application’s request-response cycle. These functions execute some code that can have side effects on the app, and usually add information to the request or response objects. They can also end the cycle by sending a response when some condition is met. If they don’t send the response when they are done, they start the execution of the next function in the stack. This triggers calling the 3rd argument, `next()`.  
@@ -284,6 +313,44 @@ function(req, res, next) {
   console.log("I'm a middleware...");
   next();
 }
+```
+```
+Q 미들웨어에 대한 설명 중,  They can also end the cycle by sending a response when some condition is met.  구문은 요청-응답 파이프라인 중간에 위치하며 조건이 만족되면 여기서 응답을 보내고 실질적으로 라우팅 핸들러까지 갈 필요가 없다는거야?
+
+네, 맞습니다. "They can also end the cycle by sending a response when some condition is met."라는 문구는 미들웨어 함수가 조건이 충족될 때 요청-응답 주기를 종료하고, 더 이상 다음 미들웨어나 라우팅 핸들러로 요청을 전달하지 않아도 된다는 것을 의미합니다. 미들웨어 함수는 요청을 처리하는 도중에 특정 조건을 확인하고, 그 조건이 만족되면 즉시 응답을 생성하고 보낼 수 있습니다. 이렇게 하면 추가적인 미들웨어 함수나 라우팅 핸들러로 요청을 전달할 필요가 없으며, 요청 처리 주기가 미들웨어 함수 내에서 종료됩니다. 예를 들어, 인증 미들웨어는 사용자의 인증 상태를 확인하고, 인증되지 않은 경우 즉시 로그인 페이지로 리다이렉션하거나 인증 오류 메시지를 보낼 수 있습니다. 이 경우 더 이상 요청이 다음 미들웨어나 라우팅 핸들러로 전달되지 않고, 요청-응답 주기가 인증 미들웨어에서 종료됩니다.
+
+app.use(function(req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.redirect('/login'); // 인증되지 않은 경우 로그인 페이지로 리다이렉션
+    } else {
+        next(); // 인증된 경우 다음 미들웨어로 전달
+    }
+});
+
+위의 예제에서, 만약 사용자가 인증되지 않았다면 미들웨어는 로그인 페이지로 리다이렉션하고 더 이상 요청을 다음 미들웨어로 전달하지 않습니다. 이것은 미들웨어 함수가 조건을 충족하면 요청-응답 주기를 종료할 수 있다는 예시입니다.
+
+Q next()를 호출하면 보통 요청-응답 중간의 파이프라인에서 끝인 라우팅 핸들러로 이동해?
+
+네, next()를 호출하면 Express.js의 요청-응답 파이프라인에서 라우팅 핸들러로 이동합니다. next()는 현재 미들웨어 함수에서 제어를 다음 미들웨어 함수 또는 라우팅 핸들러로 전달하는 역할을 합니다.
+Express.js는 미들웨어 함수와 라우팅 핸들러를 순차적으로 실행하며, next()를 호출하면 다음 미들웨어 함수나 라우팅 핸들러로 제어를 넘겨서 요청 처리를 계속합니다. 만약 더 이상 다음 미들웨어 함수나 라우팅 핸들러가 없다면 요청-응답 주기가 종료되고 클라이언트에게 응답이 전송됩니다.
+
+app.use(function(req, res, next) {
+    console.log("Middleware 1");
+    next(); // 다음 미들웨어 또는 라우팅 핸들러로 이동
+});
+
+app.use(function(req, res, next) {
+    console.log("Middleware 2");
+    next(); // 다음 미들웨어 또는 라우팅 핸들러로 이동
+});
+
+app.get('/', function(req, res) {
+    console.log("Route Handler");
+    res.send('Hello, World!');
+});
+
+위의 예제에서, / 경로로 들어오는 GET 요청은 두 개의 미들웨어 함수를 거쳐 가고, 각각의 미들웨어 함수에서 next()를 호출하여 다음 미들웨어 또는 라우팅 핸들러로 전달합니다. 따라서 요청은 "Middleware 1", "Middleware 2", "Route Handler"라는 순서대로 로그를 출력하며 처리됩니다.
+next()를 호출하지 않으면 요청은 현재 미들웨어 함수에서 멈추게 되고, 다음 미들웨어 또는 라우팅 핸들러로 진행하지 않습니다.
 ```
 Let’s suppose you mounted this function on a route. When a request matches the route, it displays the string “I’m a middleware…”, then it executes the next function in the stack. In this exercise, you are going to build root-level middleware. As you have seen in challenge 4, to mount a middleware function at root level, you can use the `app.use(<mware-function>)` method. In this case, the function will be executed for all the requests, but you can also set more specific conditions. For example, if you want a function to be executed only for POST requests, you could use `app.post(<mware-function>)`. Analogous methods exist for all the HTTP verbs (GET, DELETE, PUT, …).  
 
@@ -335,3 +402,76 @@ GET /json - 34.27.115.180
 ```
 
 ## Chain Middleware to Create a Time Server
+Middleware can be mounted at a specific route using `app.METHOD(path, middlewareFunction)`. Middleware can also be chained within a route definition.
+```
+app.get('/user', function(req, res, next) {
+  req.user = getTheUserSync();  // Hypothetical synchronous operation
+  next();
+}, function(req, res) {
+  res.send(req.user);
+});
+```
+This approach is useful to split the server operations into smaller units. That leads to a better app structure, and the possibility to reuse code in different places. This approach can also be used to perform some validation on the data. At each point of the middleware stack you can block the execution of the current chain and pass control to functions specifically designed to handle errors. Or you can pass control to the next matching route, to handle special cases. We will see how in the advanced Express section.
+```
+1. Middleware를 경로에 마운트하기:
+app.METHOD(path, middlewareFunction) 형식을 사용하여 특정 경로(path)에 미들웨어 함수(middlewareFunction)를 마운트할 수 있습니다. 이렇게 하면 해당 경로에 대한 요청이 발생할 때 미들웨어 함수가 실행됩니다.
+
+2. Middleware 체인(chain):
+Express.js에서는 하나의 경로(route)에 대해 여러 개의 미들웨어 함수를 연속해서 정의할 수 있습니다. 이렇게 하면 요청이 해당 경로로 들어올 때, 정의된 순서대로 각 미들웨어 함수가 실행됩니다.
+위의 코드 예제에서는 /user 경로에 대한 GET 요청에 대해 두 개의 미들웨어 함수가 연속해서 실행됩니다.
+첫 번째 미들웨어 함수는 req.user에 동기적으로 사용자 정보를 가져오는 작업을 수행하고 next()를 호출하여 다음 미들웨어 함수로 제어를 전달합니다.
+두 번째 미들웨어 함수는 req.user에 저장된 사용자 정보를 응답으로 클라이언트에게 보냅니다.
+
+3. 모듈화와 코드 재사용:
+이러한 접근 방식을 사용하면 서버 작업을 작은 단위로 분리할 수 있으므로 애플리케이션 구조가 더 명확해집니다. 각 미들웨어 함수는 특정 작업 또는 중간 단계 작업을 수행하므로 코드가 더 간결해지고 재사용 가능합니다.
+예를 들어, 사용자 인증, 데이터 검증 또는 로깅과 같은 다양한 작업을 미들웨어 함수로 분리하여 사용할 수 있습니다.
+
+4. 에러 처리와 특수 케이스 처리:
+미들웨어 체인 내에서 에러를 처리하거나 특수한 경우를 다룰 수 있습니다. 특정 미들웨어 함수에서 에러가 발생하면 에러 핸들링 미들웨어로 제어를 전달하여 에러를 처리하거나, 다음 일치하는 경로로 제어를 전달하여 특별한 경우를 처리할 수 있습니다.
+```
+In the route `app.get('/now', ...)` chain a middleware function and the final handler. In the middleware function you should add the current time to the request object in the `req.time` key. You can use `new Date().toString()`. In the handler, respond with a JSON object, taking the structure `{time: req.time}`.
+
+Note: The test will not pass if you don’t chain the middleware. If you mount the function somewhere else, the test will fail, even if the output result is correct.
+```
+app.get('/now', (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+}, (req, res) => {
+  res.json({"time": req.time});
+});
+```
+
+## Get Route Parameter Input from the Client
+When building an API, we have to allow users to communicate to us what they want to get from our service. For example, if the client is requesting information about a user stored in the database, they need a way to let us know which user they're interested in. One possible way to achieve this result is by using route parameters. Route parameters are named segments of the URL, delimited by slashes (/). Each segment captures the value of the part of the URL which matches its position. The captured values can be found in the `req.params` object.
+```
+route_path: '/user/:userId/book/:bookId'
+actual_request_URL: '/user/546/book/6754'
+req.params: {userId: '546', bookId: '6754'}
+```
+```
+
+이 문장은 Express.js에서 라우트 파라미터(Route Parameters)를 사용하여 API를 개발할 때 클라이언트가 원하는 정보를 서버에 전달하는 방법에 대한 설명입니다.
+
+라우트 파라미터는 URL의 일부를 나타내며, URL 내에서 슬래시(/)로 구분된 이름 있는 세그먼트입니다. 각 세그먼트는 URL 내에서 해당 위치와 일치하는 부분의 값을 캡처합니다. 이렇게 캡처된 값은 req.params 객체에 저장되어 서버에서 사용할 수 있습니다.
+
+예를 들어, 다음과 같은 라우트와 실제 요청 URL이 있다고 가정해 봅시다:
+
+라우트 경로(route_path): '/user/:userId/book/:bookId'
+실제 요청 URL(actual_request_URL): '/user/546/book/6754'
+이 경우, :userId와 :bookId는 라우트 파라미터입니다. 클라이언트가 요청한 URL에서 /user/546/book/6754 부분은 userId와 bookId에 해당하며, 이 값들은 req.params 객체에 저장됩니다.
+```
+Build an echo server, mounted at the route `GET /:word/echo`. Respond with a JSON object, taking the structure `{echo: word}`. You can find the word to be repeated at `req.params.word`. You can test your route from your browser's address bar, visiting some matching routes, e.g. `your-app-rootpath/freecodecamp/echo`.  
+
+```
+app.get('/:word/echo', (req, res) => {
+  res.json({"echo": req.params.word});
+});
+```
+
+## Get Query Parameter Input from the Client
+Another common way to get input from the client is by encoding the data after the route path, using a query string. The query string is delimited by a question mark (?), and includes field=value couples. Each couple is separated by an ampersand (&). Express can parse the data from the query string, and populate the object `req.query`. Some characters, like the percent (%), cannot be in URLs and have to be encoded in a different format before you can send them. If you use the API from JavaScript, you can use specific methods to encode/decode these characters.
+```
+route_path: '/library'
+actual_request_URL: '/library?userId=546&bookId=6754'
+req.query: {userId: '546', bookId: '6754'}
+```
