@@ -484,3 +484,36 @@ app.get('/name', (req, res) => {
 });
 ```
 ## Use body-parser to Parse POST Requests
+Besides GET, there is another common HTTP verb, it is POST. POST is the default method used to send client data with HTML forms. In REST convention, POST is used to send data to create new items in the database (a new user, or a new blog post). You don’t have a database in this project, but you are going to learn how to handle POST requests anyway.
+
+In these kind of requests, the data doesn’t appear in the URL, it is hidden in the request body. The body is a part of the HTTP request, also called the payload. Even though the data is not visible in the URL, this does not mean that it is private. To see why, look at the raw content of an HTTP POST request:
+```
+POST /path/subpath HTTP/1.0
+From: john@example.com
+User-Agent: someBrowser/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 20
+
+name=John+Doe&age=25
+```
+As you can see, the body is encoded like the query string. This is the default format used by HTML forms. With Ajax, you can also use JSON to handle data having a more complex structure. There is also another type of encoding: multipart/form-data. This one is used to upload binary files. In this exercise, you will use a URL encoded body. To parse the data coming from POST requests, you must use the `body-parser` package. This package allows you to use a series of middleware, which can decode data in different formats.
+```
+1. POST 요청:
+POST는 HTML 폼과 함께 클라이언트 데이터를 보내는 데 사용되는 기본 메서드입니다. POST 요청은 데이터를 URL에 표시하지 않고 요청 본문(Request Body)에 숨겨져 있습니다.
+REST 규칙에 따르면 POST는 데이터를 데이터베이스에 새 항목을 만들기 위해 보내는 데 사용됩니다. 예를 들어, 새로운 사용자나 블로그 게시물을 생성할 때 사용됩니다.
+
+2. 요청 본문:
+요청 본문(Request Body)은 HTTP 요청의 일부이며, 데이터를 포함하는 부분입니다. 이 부분은 "페이로드"라고도 합니다. URL에 데이터가 표시되지 않더라도 데이터는 요청 본문에 포함됩니다.
+요청 본문의 형식은 주로 HTML 폼에서 사용되는 기본 URL 인코딩 형식입니다. 데이터는 "name=value" 형식으로 인코딩되어 있습니다.
+
+3. 요청 본문의 무결성:
+POST 요청의 데이터는 URL에 표시되지 않지만, 이것은 데이터가 비공개인 것을 의미하지 않습니다. 요청은 여전히 네트워크를 통해 전송되므로 중요한 정보를 POST 요청으로 보내더라도, 요청이 가로채거나 볼 수 있는 가능성이 있습니다.
+
+4. 데이터 인코딩:
+요청 본문의 데이터는 기본적으로 URL 인코딩 형식으로 인코딩됩니다. 이는 HTML 폼에서 기본적으로 사용되는 형식입니다.
+Ajax를 사용하면 더 복잡한 구조를 가진 데이터를 처리할 때 JSON을 사용할 수 있습니다. 또한 바이너리 파일을 업로드할 때는 multipart/form-data 인코딩을 사용할 수 있습니다.
+
+5. body-parser 패키지:
+POST 요청으로부터 데이터를 파싱하려면 body-parser 패키지를 사용해야 합니다. body-parser는 다양한 형식의 데이터를 해석하고 읽을 수 있는 미들웨어를 제공합니다. 이 미들웨어를 사용하면 Express.js 애플리케이션에서 POST 요청의 데이터를 추출하고 처리할 수 있습니다.
+```
+
