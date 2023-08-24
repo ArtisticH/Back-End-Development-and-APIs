@@ -122,7 +122,8 @@ The MAJOR version should increment when you make incompatible API changes. The M
 - 부 버전(MINOR)은 호환되는 방식으로 기능을 추가할 때 증가해야 합니다.
 - 패치 버전(PATCH)은 호환되는 버그 수정이 있을 때 증가해야 합니다.
 
-이것은 패치가 버그 수정이고, 부 버전은 새로운 기능을 추가하지만 기존 동작을 깨뜨리지 않습니다. 마지막으로, 주요 버전은 이전 버전과 호환되지 않는 변경 사항을 추가합니다.
+이것은 패치가 버그 수정이고, 부 버전은 새로운 기능을 추가하지만 기존 동작을 깨뜨리지 않습니다. 마지막으로, 주요 버전은 이전 버전과 호환되지 않는 변경 사항을 추가합니다.  
+🕹️ https://youtu.be/FPSZ9ao9cFo?feature=shared
 
 ## Use the Tilde-Character to Always Use the Latest Patch Version of a Dependency
 In the last challenge, you told npm to only include a specific version of a package. That’s a useful way to freeze your dependencies if you need to make sure that different parts of your project stay compatible with each other. But in most use cases, you don’t want to miss bug fixes since they often include important security patches and (hopefully) don’t break things in doing so.
