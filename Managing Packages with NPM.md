@@ -58,6 +58,17 @@ Some common licenses for open source projects include MIT and BSD. License infor
 ```
 "license": "MIT",
 ```
+```
+1. MIT 라이선스 (MIT License):
+
+MIT 라이선스는 매우 자유로운 오픈 소스 소프트웨어 라이선스 중 하나입니다. 이 라이선스는 소프트웨어를 수정하고 재배포할 수 있는 자유를 허용합니다. 사용자는 소프트웨어를 상업적 및 비상업적 목적으로 사용할 수 있으며, 소프트웨어의 소스 코드를 포함한 복사본을 수정하고 재배포할 수 있습니다. 단, MIT 라이선스에 따른 모든 복사본과 소프트웨어의 일부에 원래 저작권 고지 및 라이선스 조건이 포함되어야 합니다.
+
+2. BSD 라이선스 (Berkeley Software Distribution License):
+
+BSD 라이선스는 MIT 라이선스와 유사한 자유로운 오픈 소스 라이선스입니다. BSD 라이선스도 소프트웨어를 수정하고 재배포할 수 있는 자유를 허용하며, 상업적 및 비상업적 사용이 가능합니다. BSD 라이선스에는 여러 버전이 있으며, 가장 널리 사용되는 3가지 버전은 "3-Clause BSD License" (또는 "New BSD License"), "2-Clause BSD License" (또는 "Simplified BSD License"), 그리고 "0-Clause BSD License" (또는 "Public Domain License")입니다. 각 버전은 약간 다른 조건을 가질 수 있으며, 사용자는 라이선스 파일 또는 소프트웨어의 문서에서 라이선스 조건을 확인해야 합니다.
+
+MIT 및 BSD 라이선스는 오픈 소스 소프트웨어 개발 커뮤니티에서 널리 사용되며, 개발자들이 소프트웨어를 공유하고 협력하는 데 기여합니다. 이러한 라이선스를 사용하면 다른 개발자들이 여러 프로젝트에서 코드를 재사용하고 수정하여 개선할 수 있으므로 오픈 소스 생태계의 성장에 크게 기여하고 있습니다.
+```
 
 ## Add a Version to Your package.json
 A `version` is one of the required fields of your package.json file. This field describes the current version of your project. Here's an example:
