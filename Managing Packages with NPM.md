@@ -159,3 +159,12 @@ You have now tested a few ways you can manage dependencies of your project by us
 But what if you want to remove an external package that you no longer need? You might already have guessed it, just remove the corresponding key-value pair for that package from your dependencies.
 
 This same method applies to removing other fields in your package.json as well.
+
+## etc
+```
+Q package.json에서 entry point가 뭐야?
+
+package.json 파일에서의 entry point는 프로젝트의 주요 JavaScript 파일을 가리킵니다. 이 파일은 일반적으로 프로젝트의 시작점을 나타내며, 프로젝트가 실행될 때 처음으로 실행되는 파일입니다.
+package.json 파일에서 entry point는 "main" 속성으로 정의됩니다. 이 속성은 일반적으로 다음과 같이 설정됩니다:
+"main": "index.js"
+```
