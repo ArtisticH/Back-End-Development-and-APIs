@@ -163,6 +163,8 @@ const createAndSavePerson = function(done) {
     done(null, data)
   });
 };
+
+즉, 이 함수는 새로운 Person 문서를 생성하고 MongoDB에 저장한 다음, 저장된 문서의 정보를 done 콜백 함수를 통해 반환합니다. 
 ```
 ```
 /** 1) Install & Set up mongoose */
