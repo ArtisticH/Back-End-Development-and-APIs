@@ -5,6 +5,26 @@ Mongoose is a popular npm package for interacting with MongoDB. With Mongoose, y
 
 In the MongoDB and Mongoose courses, you'll learn the fundamentals of working with persistent data including how to set up a model, and save, delete, and find documents in the database.
 
+## MongoDB Atlas
+```
+Q cluster
+
+클러스터는 컴퓨터에 저장된 정보들을 다루는 일종의 "놀이공원"이에요. 그런데 이 놀이공원은 데이터라는 것을 다루거나 저장하기 위한 특별한 장소입니다.
+클러스터 안에는 여러 대의 컴퓨터(서버)들이 있어요. 이 서버들은 함께 일하며 데이터를 저장하고 처리합니다.
+이렇게 여러 대의 컴퓨터가 모여서 하나의 클러스터를 이루면, 데이터를 많이 저장하고 더 빠르게 처리할 수 있게 됩니다. 그리고 만약 하나의 컴퓨터에 문제가 생겨도 다른 컴퓨터들이 도와줘서 데이터가 안전하게 보호됩니다.
+마치 놀이공원에 더 많은 놀이기구와 친구들이 있다면, 더 재미있는 놀이를 할 수 있고, 만약 친구 중에 한 명이 조금 아파도 다른 친구들이 같이 노는 걸 도와줄 거에요!
+이렇게 클러스터는 데이터를 보호하고 처리하는데 도움을 주는 특별한 "데이터 놀이공원"이라고 생각하면 돼요!
+
+Q mongoDB Atlas에서 cluster만들고 다음에 Database User 를 생성하는건 무슨 의미야?
+
+1. Cluster 생성:
+Cluster 생성은 MongoDB 데이터베이스를 호스팅하는 서버 집합을 설정하는 과정입니다. 여기에는 데이터베이스 파일을 저장하고 클라이언트와 통신할 수 있는 서버가 포함됩니다. 클러스터는 여러 서버 인스턴스로 구성되어 데이터의 저장, 분산 처리, 고가용성을 제공하며 확장성을 갖습니다.
+
+2. Database User 생성:
+Database User 생성은 데이터베이스에 접근할 수 있는 사용자를 만드는 것을 의미합니다. 이 사용자는 데이터베이스를 읽고 쓸 권한을 가지며, 일반적으로 애플리케이션과 데이터베이스 사이의 연결에 필요한 인증 정보를 제공합니다. 이 사용자는 데이터베이스를 보호하고 접근을 제어하는 데 사용됩니다.
+
+이러한 두 단계는 데이터베이스를 구성하고 관리하는 데 필수적입니다. 클러스터를 생성하여 데이터를 저장하고 처리하고, Database User를 생성하여 데이터베이스를 안전하게 접근 및 관리합니다. 이러한 단계는 MongoDB Atlas와 같은 관리형 서비스에서 상당한 편의성과 보안을 제공하여 데이터베이스 운영을 단순화하고 안전하게 만드는 데 도움이 됩니다.
+```
 ## Install and Set Up Mongoose
 to set up a hosted database on MongoDB Atlas: https://www.freecodecamp.org/news/get-started-with-mongodb-atlas/  
 
