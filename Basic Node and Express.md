@@ -521,6 +521,21 @@ POST 요청으로부터 데이터를 파싱하려면 body-parser 패키지를 �
 Note: `extended` is a configuration option that tells `body-parser` which parsing needs to be used. When `extended=false` it uses the classic encoding `querystring` library. When `extended=true` it uses `qs` library for parsing.
 
 When using `extended=false`, values can be only strings or arrays. The object returned when using `querystring` does not prototypically inherit from the default JavaScript `Object`, which means functions like `hasOwnProperty`, `toString` will not be available. The extended version allows more data flexibility, but it is outmatched by JSON.
+```
+1. extended: true:
+
+extended: true로 설정하면, URL 인코딩된 데이터를 다르게 해석합니다.
+이 경우, key=value 형식의 데이터뿐만 아니라, 객체나 배열과 같은 복잡한 데이터 구조도 파싱할 수 있습니다.
+예를 들어, name=John&age=30 형태의 데이터를 파싱할 때 { name: 'John', age: '30' }와 같이 객체로 파싱합니다.
+
+2. extended: false:
+
+extended: false로 설정하면, URL 인코딩된 데이터를 단순한 문자열로만 파싱합니다.
+이 경우, key=value 형식의 데이터만 파싱하고 객체나 배열과 같은 복잡한 데이터 구조는 파싱하지 않습니다.
+예를 들어, name=John&age=30 형태의 데이터를 파싱할 때 { 'name=John&age=30' }와 같이 문자열로 파싱합니다.
+
+어떤 옵션을 선택하느냐는 데이터 형식에 따라 다릅니다. 만약 단순한 키-값 쌍의 데이터만 다루고 있다면 extended: false를 사용하여 더 간단하게 파싱할 수 있습니다. 그러나 복잡한 데이터 구조를 다루거나 중첩된 객체나 배열을 파싱해야 한다면 extended: true를 사용하여 더 다양한 형태의 데이터를 처리할 수 있습니다.
+```
 
 ```
 1. body-parser 패키지 설치:
