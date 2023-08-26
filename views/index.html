@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>URL Shortener Microservice | freeCodeCamp.org</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cdn.freecodecamp.org/universal/favicons/favicon-16x16.png"
+    />
+    <link href="/public/style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <h1>URL Shortener Microservice</h1>
+    <main>
+      <section>
+        <form action="api/shorturl" method="POST">
+          <fieldset>
+            <legend>URL Shortener</legend>
+            <label for="url_input">URL:</label>
+            <input id="url_input" type="text" name="url" placeholder="https://www.freecodecamp.org/" />
+            <input type="submit" value="POST URL" />
+          </fieldset>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>By <a href="https://www.freecodecamp.org/">freeCodeCamp</a></p>
+    </footer>
+    <!-- <script>
+      document.querySelector('form').addEventListener('submit', (event) => {
+        event.preventDefault(); // 기본 동작을 중지합니다.
+
+        const urlInput = document.getElementById('url_input');
+        const urlToShorten = urlInput.value;
+
+        // const formData = new URLSearchParams();
+        // formData.append('original_url', URLInput.value); 
+
+        // 서버로 데이터를 전송합니다.
+        fetch('/api/shorturl', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `url=${encodeURIComponent(urlToShorten)}`,
+          // body: formData.toString()
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            // 서버 응답을 처리합니다.
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error('오류 발생:', error);
+          });
+        });
+
+    </script> -->
+  </body>
+</html>
