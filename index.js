@@ -33,33 +33,29 @@ let listener = app.listen(3000, function () {
   console.log('Your app is listening on port ' + 3000);
 });
 
-function isValidDate(input) {
-  return /^(\d{4}-\d{2}-\d{2})$/.test(input) || !!Number(input);
-}
-
 app.get("/api/:date", (req, res) => {
   let date = req.params.date;
-  let isoDatePattern = /^\d{4}-\d{2}-\d{2}$/;
 
-  if(!isValidDate(date)) {
-    res.json({ error : "Invalid Date" });
-    return;
-  } 
-  
-  if(isoDatePattern.test(date)) {
-    let inputDate = new Date(date);
-    let unixTimeStamp = inputDate.getTime();
-    let formattedDate = inputDate.toUTCString();
-    res.json({unix: unixTimeStamp, utc: formattedDate});
-  } else {
-    date = Number(date);
-    let dateObject = new Date(date);
-    let formattedDate = dateObject.toUTCString(dateObject);
-    res.json({unix: date, utc: formattedDate});
+  // date 가 숫자인 경우(string)
+  if(!isNaN(Number(date))) {
+    res.json({
+      unix: Number(date),
+      utc: new Date(Number(date)).toUTCString()
+    })
   }
+
+  // date가 '2015-05-04'형식이면
+  if(new Date(date).toUTCString() !== 'Invalid Date') {
+    res.json({
+      unix: new Date(date).getTime(),
+      utc: new Date(date).toUTCString()
+    })
+  }
+
+  res.json({error: 'Invalid Date'})
+  
 });
 
 app.get("/api", (req, res) => {
   res.json({unix: Date.now(), utc: new Date().toUTCString()})
 });
-
