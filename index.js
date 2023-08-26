@@ -25,8 +25,12 @@ app.get("/api/hello", function (req, res) {
 });
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+// var listener = app.listen(process.env.PORT, function () {
+//   console.log('Your app is listening on port ' + listener.address().port);
+// });
+
+let listener = app.listen(3000, function () {
+  console.log('Your app is listening on port ' + 3000);
 });
 
 function isValidDate(input) {
@@ -55,7 +59,7 @@ app.get("/api/:date", (req, res) => {
   }
 });
 
-app.get("/api/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({unix: Date.now(), utc: new Date().toUTCString()})
 });
 
