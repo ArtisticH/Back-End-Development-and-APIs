@@ -313,6 +313,13 @@ const findEditThenSave = async (personId, done) => {
 
 ## Perform New Updates on a Document Using model.findOneAndUpdate()
 Recent versions of Mongoose have methods to simplify documents updating. Some more advanced features (i.e. pre/post hooks, validation) behave differently with this approach, so the classic method is still useful in many situations. `findByIdAndUpdate()` can be used when searching by id.  
+```
+이전에는 "클래식" 방식으로 직접 findOne()을 사용하여 문서를 찾고, 그 후에는 업데이트를 수행했습니다. 이 경우 두 개의 독립적인 단계로 나뉘어져 있습니다.
+
+반면 findByIdAndUpdate()는 id를 기반으로 문서를 찾고 업데이트하는 과정을 한 번에 처리하는 메소드입니다. 이 메소드를 사용하면 간결한 코드로 문서를 업데이트할 수 있으며, 업데이트 이전과 이후에 발생하는 작업을 간단하게 다룰 수 있습니다.
+
+이러한 최신 메소드를 사용하면 코드를 더 간결하게 만들고 유지보수하기 쉽게 할 수 있지만, 일부 고급 기능 (예: pre/post 훅, 유효성 검사)은 이러한 접근 방식과 다를 수 있으므로 주의가 필요합니다. 때로는 이전의 "클래식" 방식이 여전히 유용할 수 있습니다.
+```
 
 Modify the `findAndUpdate` function to find a person by `Name` and set the person's age to `20`. Use the function parameter `personName` as the search key.
 
