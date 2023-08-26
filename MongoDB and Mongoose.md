@@ -383,7 +383,16 @@ const removeManyPeople = (done) => {
   });
 };
 ```
+```
+Mongoose 버전 4에서 Model.remove() 메서드는 Mongoose 버전 5 이후에 Model.deleteMany() 및 Model.deleteOne() 메서드로 대체되었습니다. 이러한 변경은 Mongoose v5.0.0에서 이루어졌으며, MongoDB의 remove() 메서드와 더 일관된 동작을 제공하기 위한 것입니다.
 
+1. Model.deleteMany() 메서드: 이 메서드는 조건에 해당하는 모든 문서를 삭제합니다. 즉, 조건을 만족하는 모든 문서가 삭제됩니다.
+const result = await MyModel.deleteMany({ condition }); // 모든 조건에 맞는 문서를 삭제합니다.
+
+2. Model.deleteOne() 메서드: 이 메서드는 조건에 해당하는 첫 번째 문서를 삭제합니다. 따라서 조건을 만족하는 첫 번째 문서만 삭제됩니다.
+const result = await MyModel.deleteOne({ condition }); // 조건에 맞는 첫 번째 문서만 삭제합니다.
+
+```
 ## Chain Search Query Helpers to Narrow Search Results
 If you don’t pass the callback as the last argument to `Model.find()` (or to the other search methods), the query is not executed. You can store the query in a variable for later use. This kind of object enables you to build up a query using chaining syntax. The actual db search is executed when you finally chain the method `.exec()`. You always need to pass your callback to this last method. There are many query helpers, here we'll use the most commonly used.  
 
