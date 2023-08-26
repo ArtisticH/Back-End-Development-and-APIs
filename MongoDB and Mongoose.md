@@ -457,3 +457,4 @@ Q'Models are higher-order constructors that take a schema and create an instance
 
 MongoDB에서 모델은 스키마를 취하여 관계형 데이터베이스의 레코드와 유사한 문서 인스턴스를 생성하는 객체라는 것을 의미합니다. 이 모델을 사용하여 MongoDB 데이터베이스와 상호 작용하며, 컬렉션 내의 데이터를 조작할 수 있습니다.
 ```
+https://www.freecodecamp.org/news/mongoose101/
