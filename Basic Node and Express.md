@@ -122,7 +122,7 @@ Express는 라우트를 위에서부터 아래로 순서대로 평가하며, 처
 
 `절대 경로 (Absolute Path)`: 절대 경로는 파일이나 디렉토리의 위치를 루트 디렉토리부터의 전체 경로로 지정하는 방법입니다. 예를 들어, `"/home/user/documents/file.txt"`와 같이 사용됩니다. 절대 경로는 시스템 전체에서 고유하며, 어디에서나 동일하게 해석됩니다.
 
-__dirname을 사용하면 현재 스크립트 파일의 위치를 알 수 있으므로, 상대 경로를 절대 경로로 변환하기 위해 사용됩니다. 예를 들어, 만약 현재 스크립트 파일이 "/home/user/myapp/server.js"에 있다고 가정하면, __dirname은 "/home/user/myapp"와 같은 현재 스크립트 파일의 디렉토리 경로를 나타냅니다. 그러므로 __dirname + '/views/index.html'을 사용하면 "/home/user/myapp/views/index.html"과 같은 절대 경로를 계산할 수 있게 됩니다.
+`__dirname`을 사용하면 현재 스크립트 파일의 위치를 알 수 있으므로, 상대 경로를 절대 경로로 변환하기 위해 사용됩니다. 예를 들어, 만약 현재 스크립트 파일이 "/home/user/myapp/server.js"에 있다고 가정하면, `__dirname`은 "/home/user/myapp"와 같은 현재 스크립트 파일의 디렉토리 경로를 나타냅니다. 그러므로 `__dirname` + '/views/index.html'을 사용하면 "/home/user/myapp/views/index.html"과 같은 절대 경로를 계산할 수 있게 됩니다.
 
 ## Serve Static Assets
 An HTML server usually has one or more directories that are accessible by the user. You can place there the static assets needed by your application (stylesheets, scripts, images).
